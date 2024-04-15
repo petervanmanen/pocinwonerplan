@@ -6,6 +6,8 @@ import nl.commutr.demo.domain.aanbod.Actiehouder;
 import nl.commutr.demo.domain.inwonerplan.InwonerPlan;
 import nl.commutr.demo.domain.aanbod.Ontwikkelwens;
 import nl.commutr.demo.domain.aanbod.Subdoel;
+import nl.commutr.demo.domain.inwonerplan.InwonerplanHoofdDoel;
+import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
 import nl.commutr.demo.repository.AanbodRepository;
 import nl.commutr.demo.repository.AandachtspuntRepository;
 import nl.commutr.demo.repository.ActiehouderRepository;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class InwonerPlanService {
@@ -43,6 +46,16 @@ public class InwonerPlanService {
     List<InwonerPlan> inwonerPlanList = new ArrayList<>();
 
     public void addInwonerplan(InwonerPlan inwonerPlan){
+        for(InwonerplanSubdoel doel: inwonerPlan.subdoelen){
+            if(doel.getSubdoelUUID()!=null) {
+                Subdoel subdoel = subdoelRepository.findById(UUID.fromString(doel.getSubdoelUUID())).get();
+                doel.setSubdoel(subdoel);
+            }
+            if(doel.getAandachtspuntUUID()!=null) {
+                Aandachtspunt aandachtspunt = aandachtspuntRepository.findById(UUID.fromString(doel.getAandachtspuntUUID())).get();
+                doel.setAandachtspunt(aandachtspunt);
+            }
+        }
         repository.save(inwonerPlan);
     }
 

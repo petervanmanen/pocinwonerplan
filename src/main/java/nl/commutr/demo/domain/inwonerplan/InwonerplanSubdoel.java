@@ -1,5 +1,6 @@
 package nl.commutr.demo.domain.inwonerplan;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -27,6 +28,10 @@ public class InwonerplanSubdoel {
     @OneToMany
     List<InwonerplanActiviteit> activiteiten;
 
+    public String aandachtspuntUUID;
+
+    public String subdoelUUID;
+
 
     public void setId(UUID id) {
         this.id = id;
@@ -34,5 +39,59 @@ public class InwonerplanSubdoel {
 
     public UUID getId() {
         return id;
+    }
+
+    @JsonIgnore
+    public Subdoel getSubdoel() {
+        return subdoel;
+    }
+
+    public void setSubdoel(Subdoel subdoel) {
+        this.subdoel = subdoel;
+    }
+
+    @JsonIgnore
+    public Aandachtspunt getAandachtspunt() {
+        return aandachtspunt;
+    }
+
+    public void setAandachtspunt(Aandachtspunt aandachtspunt) {
+        this.aandachtspunt = aandachtspunt;
+    }
+
+    public List<InwonerplanActiviteit> getActiviteiten() {
+        return activiteiten;
+    }
+
+    public void setActiviteiten(List<InwonerplanActiviteit> activiteiten) {
+        this.activiteiten = activiteiten;
+    }
+
+    public String getAandachtspuntUUID() {
+        if(this.aandachtspunt!=null){
+            this.aandachtspunt.getId().toString();
+        }
+        if(this.aandachtspuntUUID!=null){
+            return aandachtspuntUUID;
+        }
+        return null;
+    }
+
+    public void setAandachtspuntUUID(String aandachtspuntUUID) {
+        this.aandachtspuntUUID = aandachtspuntUUID;
+    }
+
+    public String getSubdoelUUID() {
+        if(this.subdoel!=null){
+            return this.subdoel.getUuid().toString();
+        }
+        if(this.subdoelUUID!=null){
+            return this.subdoelUUID;
+        }
+        return null;
+    }
+
+    public void setSubdoelUUID(String subdoelUUID) {
+        this.subdoelUUID = subdoelUUID;
     }
 }

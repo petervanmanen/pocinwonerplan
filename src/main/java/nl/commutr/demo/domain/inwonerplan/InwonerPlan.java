@@ -1,6 +1,8 @@
 package nl.commutr.demo.domain.inwonerplan;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,15 +21,16 @@ public class InwonerPlan {
     public UUID uuid;
     public String bsn;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     public InwonerplanHoofdDoel hoofddoel;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     public List<InwonerplanSubdoel> subdoelen;
 
-    public InwonerPlan(String bsn, Subdoel hoofddoel) {
+    public InwonerPlan(String bsn, Subdoel hoofddoel, List<InwonerplanSubdoel> subdoelen) {
         this.bsn = bsn;
         this.hoofddoel = new InwonerplanHoofdDoel(hoofddoel);
+        this.subdoelen = subdoelen;
     }
 
     public InwonerPlan() {

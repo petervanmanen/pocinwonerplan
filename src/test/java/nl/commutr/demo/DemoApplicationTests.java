@@ -4,6 +4,7 @@ import nl.commutr.demo.domain.aanbod.Aanbod;
 import nl.commutr.demo.domain.aanbod.AanbodActiviteit;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
 import nl.commutr.demo.domain.inwonerplan.InwonerPlan;
+import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
 import nl.commutr.demo.repository.AanbodActiviteitRepository;
 import nl.commutr.demo.repository.AanbodRepository;
 import nl.commutr.demo.repository.AandachtspuntRepository;
@@ -18,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertNotEquals;
@@ -76,7 +78,30 @@ class DemoApplicationTests {
 
     @Test
     void hoofddoelShouldBeVerslaving() {
-        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4));
+        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),null);
         assertEquals("hoofddoel should be verslaving", "Ik ben onder behandeling voor mijn verslavingsproblematiek",inwonerPlan.hoofddoel.naamDoel);
+    }
+
+    @Test
+    void subdoelShouldBeResolvedInInwonerplan(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(5).getUuid().toString());
+        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        inwonerPlanService.addInwonerplan(inwonerPlan);
+
+        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan("111222333");
+        assertEquals("subdoelname should be verslavingsproblematiek","Ik heb hulp gevraagd voor mijn verslavingsproblematiek",resolvedInwonerplan.subdoelen.getFirst().getSubdoel().getNaam());
+    }
+
+    @Test
+    void aandachtspuntShouldBeResolvedInInwonerplan(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
+
+        InwonerPlan inwonerPlan = new InwonerPlan("111222334", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        inwonerPlanService.addInwonerplan(inwonerPlan);
+
+        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan("111222334");
+        assertEquals("aandachtpuntname should be Verslaving","Verslaving",resolvedInwonerplan.subdoelen.getFirst().getAandachtspunt().getNaamAandachtsPunt());
     }
 }
