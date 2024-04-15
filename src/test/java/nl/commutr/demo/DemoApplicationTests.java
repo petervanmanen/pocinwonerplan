@@ -60,6 +60,11 @@ class DemoApplicationTests {
     }
 
     @Test
+    void actiehouderShouldHaveLabel(){
+        assertEquals("actiehouder should be coach","Coach",inwonerPlanService.getAanbod().get(0).getAanbodActiviteiten().get(0).getActiehouder().naam);
+        assertEquals("actiehouder should be Ondersteuner","Ondersteuner",inwonerPlanService.getAanbod().get(0).getAanbodActiviteiten().get(1).getActiehouder().naam);
+    }
+    @Test
     void aanbodShouldHaveTreeActvities() {
         assertEquals("aanbodShouldHaveTreeActvities", 3, inwonerPlanService.getAanbod().getFirst().getAanbodActiviteiten().size());
     }
@@ -72,8 +77,6 @@ class DemoApplicationTests {
     @Test
     void hoofddoelShouldBeVerslaving() {
         InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4));
-
         assertEquals("hoofddoel should be verslaving", "Ik ben onder behandeling voor mijn verslavingsproblematiek",inwonerPlan.hoofddoel.naamDoel);
-
     }
 }

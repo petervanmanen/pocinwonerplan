@@ -71,24 +71,24 @@ public class ReadData {
         ontwikkelwensRepository.saveAll(loadObjectList(Ontwikkelwens.class, "data/ontwikkelwensen.csv"));
     }
     private void readAanbodActiviteiten() {
-        aanbodActiviteitRepository.saveAll(loadObjectList(AanbodActiviteit.class, "data/aanbodactiviteit.csv"));
+        List<AanbodActiviteit> aanbodActiviteitList = loadObjectList(AanbodActiviteit.class, "data/aanbodactiviteit.csv");
+        for(AanbodActiviteit aanbodActiviteit:aanbodActiviteitList){
+            aanbodActiviteit.setActiehouder(actiehouderRepository.findByNaamIgnoreCase(aanbodActiviteit.getActiehouderlabel().trim()));
+        }
+        aanbodActiviteitRepository.saveAll(aanbodActiviteitList);
     }
 
     private void readAanbod(){
         List<Aanbod> aanbods = loadObjectList(Aanbod.class,"data/aanbod.csv");
         for(Aanbod aanbod: aanbods){
             for(String activiteit: aanbod.activiteiten.split("\t")){
-                System.out.println("Activiteit: " + activiteit.trim());
                 AanbodActiviteit a = aanbodActiviteitRepository.getAanbodActiviteitByNaamaanbodactiviteitIgnoreCase(activiteit.trim());
-                System.out.println("Resolved activitieit: " + a.getNaamaanbodactiviteit());
                 aanbod.addActiviteit(a);
             }
         }
         for(Aanbod aanbod: aanbods){
-            System.out.println(aanbod.getNaam());
             for(String code: aanbod.subdoel.split(" ")){
                 Subdoel s = subdoelRepository.getSubdoelByCode(code);
-                System.out.println(s.getNaam() + " -" + code + "-" + s.getCode() + s.getUuid());
                 aanbod.addSubdoel(s);
             }
         }
@@ -127,7 +127,7 @@ public class ReadData {
             return Collections.emptyList();
         }
     }
-
+/*
     public List<String[]> loadManyToManyRelationship(String fileName) {
         try {
             CsvMapper mapper = new CsvMapper();
@@ -143,5 +143,5 @@ public class ReadData {
                     "Error occurred while loading many to many relationship from file = " + fileName);
             return Collections.emptyList();
         }
-    }
+    }*/
 }

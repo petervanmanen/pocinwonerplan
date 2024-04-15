@@ -1,9 +1,12 @@
 package nl.commutr.demo.domain.aanbod;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.util.UUID;
 
@@ -17,11 +20,15 @@ public class AanbodActiviteit {
 
     String naamaanbodactiviteit;
 
-    String actiehouder;
+    @ManyToOne
+    Actiehouder actiehouder;
 
     int afhandeltermijn;
 
     boolean actief;
+
+    @JsonIgnore
+    String actiehouderlabel;
 
     public AanbodActiviteit() {
 
@@ -51,11 +58,11 @@ public class AanbodActiviteit {
         this.naamaanbodactiviteit = naamaanbodactiviteit;
     }
 
-    public String getActiehouder() {
+    public Actiehouder getActiehouder() {
         return actiehouder;
     }
 
-    public void setActiehouder(String actiehouder) {
+    public void setActiehouder(Actiehouder actiehouder) {
         this.actiehouder = actiehouder;
     }
 
@@ -75,11 +82,12 @@ public class AanbodActiviteit {
         this.actief = actief;
     }
 
-    public AanbodActiviteit(String codeaanbodactiviteit, String naamaanbodactiviteit, String actiehouder, int afhandeltermijn, boolean actief) {
-        this.codeaanbodactiviteit = codeaanbodactiviteit;
-        this.naamaanbodactiviteit = naamaanbodactiviteit;
-        this.actiehouder = actiehouder;
-        this.afhandeltermijn = afhandeltermijn;
-        this.actief = actief;
+    @JsonIgnore
+    public String getActiehouderlabel() {
+        return actiehouderlabel;
+    }
+@JsonProperty
+    public void setActiehouderlabel(String actiehouderlabel) {
+        this.actiehouderlabel = actiehouderlabel;
     }
 }

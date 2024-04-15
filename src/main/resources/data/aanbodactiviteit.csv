@@ -1,6 +1,6 @@
-codeaanbodactiviteit,naamaanbodactiviteit,actiehouder,afhandeltermijn,actief
+codeaanbodactiviteit,naamaanbodactiviteit,actiehouderlabel,afhandeltermijn,actief
 1,Aanmelden,Coach,1,TRUE
-2,Start,Coach,1,TRUE
+2,Start,Ondersteuner,1,TRUE
 3,Start Nazorg,Coach,1,TRUE
 4,Eindevaluatie, Coach ,45,TRUE
 10,Uitnodiging versturen,Coach,5,TRUE

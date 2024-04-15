@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 public interface ActiehouderRepository extends CrudRepository<Actiehouder, UUID> {
-    Actiehouder findByNaam(String naam);
+    Actiehouder findByNaamIgnoreCase(String naam);
 }

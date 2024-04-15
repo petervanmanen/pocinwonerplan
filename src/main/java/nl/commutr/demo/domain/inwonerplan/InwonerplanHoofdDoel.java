@@ -1,5 +1,6 @@
 package nl.commutr.demo.domain.inwonerplan;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class InwonerplanHoofdDoel {
     public LocalDate begindatum;
     public String naamDoel;
     @ManyToOne
+    @JsonIgnore
     public Subdoel doel;
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
