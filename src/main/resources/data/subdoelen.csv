@@ -1,0 +1,48 @@
+code,naam,actief,aandachtspuntenCodes
+1,Ik heb ervoor gezorgd dat mijn woonsituatie is verbeterd,TRUE,6
+2,Ik heb hulp gevraagd om mijn woonsituatie te verbeteren,TRUE,6
+3,Ik heb overzicht over mijn financi�le situatie en het lukt mij om rond te komen,TRUE,5
+4,Ik weet wat mijn mogelijkheden zijn ondanks mijn verslavingsproblematiek,TRUE,3
+5,Ik ben onder behandeling voor mijn verslavingsproblematiek,TRUE,3
+6,Ik heb hulp gevraagd voor mijn verslavingsproblematiek,TRUE,3
+7,Ik heb hulp gevraagd voor mijn psychische klachten,TRUE,2
+8,Ik ben onder behandeling voor mijn lichamelijke klachten,TRUE,1
+9,Ik heb hulp gevraagd voor mijn lichamelijke klachten,TRUE,1
+10,Ik heb een beoordeling arbeidsvermogen aangevraagd bij UWV,TRUE,1
+11,Ik heb hulp bij het regelen van mijn financi�n,TRUE,5
+12,Ik heb geen financi�le belemmeringen om aan het werk te gaan,TRUE,5
+13,Ik weet hoe ik mijn zorgtaken kan combineren met een baan opleiding of andere activiteit,TRUE,9
+14,Ik ben onder behandeling voor mijn psychische klachten,TRUE,1
+15,Uitkering door voorliggende voorziening,TRUE,11
+16,Ik heb mijn penitentiair programma succesvol afgerond (NIET GEBRUIKEN),FALSE,4
+17,Ik ben gestart met een zinvolle dagbesteding,TRUE,29
+18,Ik ben gestart met vrijwilligerswerk,TRUE,28
+19,Ik beheers de Nederlandse taal voldoende om aan het werk te gaan een opleiding te volgen of te ondernemen,TRUE,7
+20,Ik heb een werkritme,TRUE,25 26 24
+21,Ik weet wat er van mij verwacht wordt als werknemer,TRUE,25 26 24
+22,Ik ben gestart met een opleiding,TRUE,22
+23,Ik weet welke opleiding past bij mijn mogelijkheden,TRUE,22
+24,Ik volg een opleiding naast mijn partime betaalde baan,TRUE,22
+25,Ik ben gestart met een BBL opleiding (werken en leren),TRUE,24 20 21
+26,Ik weet welke opleiding past bij mijn mogelijkheden,TRUE,22
+27,Ik heb urenuitbreiding gekregen,TRUE,20
+28,Ik ben gestart met werken en behoud mijn werk succesvol,TRUE,20
+29,Ik heb werk gevonden waarmee ik uit de bijstand ga,TRUE,20 24 
+30,Ik heb mijn sollicitatievaardigheden ontwikkeld,TRUE,20 23 24 25 26
+31,Ik weet welk werk bij mij past,TRUE,20
+32,Ik heb een netwerk waarmee ik sociale contacten heb,TRUE,10 29
+33,Ik krijg betaald voor mijn werkzaamheden als mantelzorger (vanuit PGB),TRUE,20
+34,Ik weet of ik (vanuit PGB) betaald kan krijgen voor mijn werkzaamheden als mantelzorger,TRUE,28
+35,Ik kan mijn zorgtaken (mantelzorg) overdragen aan anderen,TRUE,28
+36,Ik heb kinderopvang voor mijn kinderen,TRUE,20
+37,Ik heb voldoende digitale vaardigheden om een stap te zetten richting de arbeidsmarkt,TRUE,20 25 26
+38,Ik kan omgaan met computer smartphone en tablet kan zelfstandig mailen en zoeken op internet,TRUE,20 25 26
+39,Ik beheers de Nederlandse taal op het voor mij hoogst haalbare niveau,TRUE,7 20
+40,Ik beheers de Nederlandse taal voldoende om een volgende stap te kunnen zetten,TRUE,7 20
+41,Ik weet wat mijn Nederlandse taalniveau is,TRUE,7
+42,Ik ben gestart met de hulp voor mijn schulden,TRUE,5
+43,Ik heb mijn penitentiair programma succesvol afgerond,TRUE,4
+44,Ik weet wat mijn mogelijkheden zijn met mijn justitiele verleden,TRUE,4 20 
+45,Ik heb een beoordeling arbeidsvermogen aangevraagd bij het UWV,TRUE,20
+46,Ik weet wat mijn mogelijkheden zijn ondanks de psychische klachten,TRUE,2 20
+47,Ik weet wat mijn mogelijkheden zijn ondanks mijn lichamelijke klachten,TRUE,1 20

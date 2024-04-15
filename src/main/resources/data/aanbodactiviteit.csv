@@ -1,0 +1,19 @@
+codeaanbodactiviteit,naamaanbodactiviteit,actiehouder,afhandeltermijn,actief
+1,Aanmelden,Coach,1,TRUE
+2,Start,Coach,1,TRUE
+3,Start Nazorg,Coach,1,TRUE
+4,Eindevaluatie, Coach ,45,TRUE
+10,Uitnodiging versturen,Coach,5,TRUE
+12,Rappport bespreken,Coach,30,TRUE
+13,Tussenevaluatie 1,Coach,10,TRUE
+14,Tussenevaluatie 2,Coach,10,TRUE
+15,Tussenevaluatie 3,Coach,10,TRUE
+155,Tussenevaluatie 4,Coach,10,TRUE
+16,Beschikking versturen,Coach,31,TRUE
+17,Aanbod toevoegen,Coach,5,TRUE
+18,Document genereren,Coach,1,TRUE
+19,Verlenging 1,Coach,30,TRUE
+20,Document generaren 2,Coach,5,TRUE
+22,Rapport bespreken,Coach,2,TRUE
+23,Document versturen,Coach,5,TRUE
+24,Document versturen 2,Coach,5,TRUE
