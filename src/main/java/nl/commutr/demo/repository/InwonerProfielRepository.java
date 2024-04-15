@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 public interface InwonerProfielRepository extends CrudRepository<InwonerProfiel, UUID> {
-    InwonerPlan findByBsn(String bsn);
+    InwonerProfiel findByBsn(String bsn);
 }

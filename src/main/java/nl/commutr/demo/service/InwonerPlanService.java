@@ -1,5 +1,6 @@
 package nl.commutr.demo.service;
 
+import nl.commutr.demo.domain.InwonerProfiel;
 import nl.commutr.demo.domain.aanbod.Aanbod;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
 import nl.commutr.demo.domain.aanbod.Actiehouder;
@@ -12,6 +13,7 @@ import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
 import nl.commutr.demo.repository.AanbodRepository;
 import nl.commutr.demo.repository.AandachtspuntRepository;
 import nl.commutr.demo.repository.ActiehouderRepository;
+import nl.commutr.demo.repository.InwonerProfielRepository;
 import nl.commutr.demo.repository.InwonerplanRepository;
 import nl.commutr.demo.repository.OntwikkelwensRepository;
 import nl.commutr.demo.repository.SubdoelRepository;
@@ -43,6 +45,9 @@ public class InwonerPlanService {
 
     @Autowired
     ActiehouderRepository actiehouderRepository;
+
+    @Autowired
+    InwonerProfielRepository inwonerProfielRepository;
 
     List<InwonerPlan> inwonerPlanList = new ArrayList<>();
 
@@ -90,5 +95,17 @@ public class InwonerPlanService {
 
     public InwonerPlan getInwonerPlan(String bsn) {
         return repository.findByBsn(bsn);
+    }
+
+    public void addInwonerprofiel(InwonerProfiel inwonerProfiel){
+        if(inwonerProfielRepository.findByBsn(inwonerProfiel.bsn)==null){
+            inwonerProfielRepository.save(inwonerProfiel);
+            return;
+        }
+        throw new RuntimeException("Profiel bestaat al");
+    }
+
+    public InwonerProfiel getInwonerProfiel(String bsn){
+        return inwonerProfielRepository.findByBsn(bsn);
     }
 }

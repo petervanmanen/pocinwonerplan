@@ -13,6 +13,7 @@ import jakarta.persistence.OneToOne;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
 import nl.commutr.demo.domain.aanbod.Subdoel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class InwonerplanSubdoel {
     Aandachtspunt aandachtspunt;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    List<InwonerplanActiviteit> activiteiten;
+    List<InwonerplanActiviteit> activiteiten = new ArrayList<>();
 
     public String aandachtspuntUUID;
 

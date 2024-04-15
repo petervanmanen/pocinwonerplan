@@ -1,20 +1,11 @@
 package nl.commutr.demo;
 
-import nl.commutr.demo.domain.aanbod.Aanbod;
-import nl.commutr.demo.domain.aanbod.AanbodActiviteit;
-import nl.commutr.demo.domain.aanbod.Aandachtspunt;
 import nl.commutr.demo.domain.aanbod.ActiviteitStatus;
 import nl.commutr.demo.domain.inwonerplan.InwonerPlan;
 import nl.commutr.demo.domain.inwonerplan.InwonerplanActiviteit;
 import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
-import nl.commutr.demo.repository.AanbodActiviteitRepository;
-import nl.commutr.demo.repository.AanbodRepository;
-import nl.commutr.demo.repository.AandachtspuntRepository;
-import nl.commutr.demo.repository.InwonerplanRepository;
-import nl.commutr.demo.repository.SubdoelRepository;
 import nl.commutr.demo.service.InwonerPlanService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -27,11 +18,10 @@ import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
-import static org.springframework.test.util.AssertionErrors.assertNotEquals;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class DemoApplicationTests {
+class InwonerplanTest {
 
     @Autowired
     InwonerPlanService inwonerPlanService;
