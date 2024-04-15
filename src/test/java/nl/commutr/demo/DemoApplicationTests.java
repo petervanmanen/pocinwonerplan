@@ -31,7 +31,7 @@ class DemoApplicationTests {
 
     @Test
     void shouldReturnActiehouders(){
-        assertEquals("shouldreturn3actiehouders", 3, inwonerPlanService.getActiehouders().size());
+        assertEquals("shouldreturn3actiehouders", 4, inwonerPlanService.getActiehouders().size());
     }
 
     @Test
