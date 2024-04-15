@@ -6,6 +6,7 @@ import nl.commutr.demo.domain.aanbod.Actiehouder;
 import nl.commutr.demo.domain.inwonerplan.InwonerPlan;
 import nl.commutr.demo.domain.aanbod.Ontwikkelwens;
 import nl.commutr.demo.domain.aanbod.Subdoel;
+import nl.commutr.demo.domain.inwonerplan.InwonerplanActiviteit;
 import nl.commutr.demo.domain.inwonerplan.InwonerplanHoofdDoel;
 import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
 import nl.commutr.demo.repository.AanbodRepository;
@@ -58,6 +59,9 @@ public class InwonerPlanService {
             doel.setSubdoel(subdoel);
             doel.setAandachtspunt(aandachtspunt);
 
+            for(InwonerplanActiviteit activiteit: doel.getActiviteiten()){
+                activiteit.setActiehouder(actiehouderRepository.findByNaamIgnoreCase(activiteit.getActiehouderOmschrijving()));
+            }
 
         }
         repository.save(inwonerPlan);

@@ -1,7 +1,9 @@
 package nl.commutr.demo.domain.inwonerplan;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -27,7 +29,7 @@ public class InwonerplanSubdoel {
     @ManyToOne
     Aandachtspunt aandachtspunt;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<InwonerplanActiviteit> activiteiten;
 
     public String aandachtspuntUUID;

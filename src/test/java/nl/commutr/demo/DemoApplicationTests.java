@@ -3,7 +3,9 @@ package nl.commutr.demo;
 import nl.commutr.demo.domain.aanbod.Aanbod;
 import nl.commutr.demo.domain.aanbod.AanbodActiviteit;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
+import nl.commutr.demo.domain.aanbod.ActiviteitStatus;
 import nl.commutr.demo.domain.inwonerplan.InwonerPlan;
+import nl.commutr.demo.domain.inwonerplan.InwonerplanActiviteit;
 import nl.commutr.demo.domain.inwonerplan.InwonerplanSubdoel;
 import nl.commutr.demo.repository.AanbodActiviteitRepository;
 import nl.commutr.demo.repository.AanbodRepository;
@@ -13,6 +15,7 @@ import nl.commutr.demo.repository.SubdoelRepository;
 import nl.commutr.demo.service.InwonerPlanService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,13 @@ class DemoApplicationTests {
 
     @Autowired
     InwonerPlanService inwonerPlanService;
+
+    int bsn = 123456789;
+
+    @BeforeEach
+    void bsnIncrement(){
+        bsn += 1;
+    }
 
     @Test
     void shouldReturnActiehouders(){
@@ -88,22 +98,24 @@ class DemoApplicationTests {
     void subdoelShouldBeResolvedInInwonerplan(){
         InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
         inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(5).getUuid().toString());
-        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
         inwonerPlanService.addInwonerplan(inwonerPlan);
 
-        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan("111222333");
+        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan(String.valueOf(bsn));
         assertEquals("subdoelname should be verslavingsproblematiek","Ik heb hulp gevraagd voor mijn verslavingsproblematiek",resolvedInwonerplan.subdoelen.getFirst().getSubdoel().getNaam());
     }
 
     @Test
     void aandachtspuntShouldBeResolvedInInwonerplan(){
         InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(5).getUuid().toString());
         inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
 
-        InwonerPlan inwonerPlan = new InwonerPlan("111222334", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
         inwonerPlanService.addInwonerplan(inwonerPlan);
 
-        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan("111222334");
+        InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan(String.valueOf(bsn));
         assertEquals("aandachtpuntname should be Verslaving","Verslaving",resolvedInwonerplan.subdoelen.getFirst().getAandachtspunt().getNaamAandachtsPunt());
     }
 
@@ -111,25 +123,71 @@ class DemoApplicationTests {
     void subdoelWithNonExistingUUIDShouldThrow(){
         InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
         inwonerplanSubdoel.setSubdoelUUID(UUID.fromString("eb417c95-f0a8-4e04-8fd8-883ee40a6907").toString());
-        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
+
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
 
         RuntimeException ex = Assertions.assertThrows(NoSuchElementException.class,() ->{
             inwonerPlanService.addInwonerplan(inwonerPlan);
         });
 
-        assertEquals("Exception should be thrownwith message", "No value present",ex.getMessage());
+        assertEquals("Exception should be thrown with message", "No value present",ex.getMessage());
     }
 
     @Test
     void aandachtspuntWithNonExistingUUIDShouldThrow(){
         InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
         inwonerplanSubdoel.setAandachtspuntUUID(UUID.fromString("eb417c95-f0a8-4e04-8fd8-883ee40a6907").toString());
-        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+        inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(7).getUuid().toString());
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
 
         RuntimeException ex = Assertions.assertThrows(NoSuchElementException.class,() ->{
             inwonerPlanService.addInwonerplan(inwonerPlan);
         });
 
-        assertEquals("Exception should be thrownwith message", "No value present",ex.getMessage());
+        assertEquals("Exception should be thrown with message", "No value present",ex.getMessage());
+    }
+
+    @Test
+    void subdoelwithnonrelatedaandachtspuntshouldthrow(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
+        inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(7).getUuid().toString());
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+
+        RuntimeException ex = Assertions.assertThrows(RuntimeException.class,() ->{
+            inwonerPlanService.addInwonerplan(inwonerPlan);
+        });
+
+        assertEquals("Exception should be thrownwith message", "Subdoel and aandachtspunt are not related",ex.getMessage());
+    }
+
+    @Test
+    void subdoelShouldHaveActiviteiten(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setSubdoelUUID(inwonerPlanService.getSubdoelen().get(5).getUuid().toString());
+        inwonerplanSubdoel.setAandachtspuntUUID(inwonerPlanService.getAandachtspunten().get(2).getId().toString());
+
+        InwonerplanActiviteit inwonerplanActiviteit = new InwonerplanActiviteit();
+        inwonerplanActiviteit.setActiehouderOmschrijving("coach");
+        inwonerplanActiviteit.setStatus(ActiviteitStatus.OPEN);
+        inwonerplanActiviteit.setBegindatum(LocalDate.now());
+        inwonerplanActiviteit.setEinddatum(LocalDate.now().plusDays(5));
+        inwonerplanActiviteit.setNaam("Test activiteit 1");
+
+        InwonerplanActiviteit inwonerplanActiviteit2 = new InwonerplanActiviteit();
+        inwonerplanActiviteit2.setActiehouderOmschrijving("Coach Werk");
+        inwonerplanActiviteit2.setStatus(ActiviteitStatus.OPEN);
+        inwonerplanActiviteit2.setBegindatum(LocalDate.now());
+        inwonerplanActiviteit2.setEinddatum(LocalDate.now().plusDays(5));
+        inwonerplanActiviteit2.setNaam("Test activiteit 2");
+        inwonerplanSubdoel.setActiviteiten(List.of(inwonerplanActiviteit,inwonerplanActiviteit2));
+        InwonerPlan inwonerPlan = new InwonerPlan(String.valueOf(bsn), inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+
+        inwonerPlanService.addInwonerplan(inwonerPlan);
+
+        InwonerPlan inwonerplanResolved = inwonerPlanService.getInwonerPlan(String.valueOf(bsn));
+        assertEquals("actiehouder should be coach","Coach",inwonerplanResolved.subdoelen.get(0).getActiviteiten().get(0).getActiehouder().naam);
+        assertEquals("actiehouder should be coach","Coach Werk",inwonerplanResolved.subdoelen.get(0).getActiviteiten().get(1).getActiehouder().naam);
     }
 }

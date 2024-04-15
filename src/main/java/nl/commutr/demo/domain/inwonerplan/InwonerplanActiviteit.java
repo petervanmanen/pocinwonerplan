@@ -1,5 +1,6 @@
 package nl.commutr.demo.domain.inwonerplan;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -7,6 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import nl.commutr.demo.domain.aanbod.Actiehouder;
+import nl.commutr.demo.domain.aanbod.ActiviteitStatus;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,6 +25,11 @@ public class InwonerplanActiviteit {
     String naam;
 
     String omschrijving;
+
+    ActiviteitStatus status;
+
+    @JsonIgnore
+    String actiehouderOmschrijving;
     @Id
     @GeneratedValue
     private UUID id;
@@ -76,5 +83,21 @@ public class InwonerplanActiviteit {
 
     public UUID getId() {
         return id;
+    }
+
+    public String getActiehouderOmschrijving() {
+        return actiehouderOmschrijving;
+    }
+
+    public void setActiehouderOmschrijving(String actiehouderOmschrijving) {
+        this.actiehouderOmschrijving = actiehouderOmschrijving;
+    }
+
+    public ActiviteitStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ActiviteitStatus status) {
+        this.status = status;
     }
 }
