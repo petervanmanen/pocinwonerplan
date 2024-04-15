@@ -11,6 +11,7 @@ import nl.commutr.demo.repository.AandachtspuntRepository;
 import nl.commutr.demo.repository.InwonerplanRepository;
 import nl.commutr.demo.repository.SubdoelRepository;
 import nl.commutr.demo.service.InwonerPlanService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -19,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import static org.springframework.test.util.AssertionErrors.assertEquals;
@@ -103,5 +105,31 @@ class DemoApplicationTests {
 
         InwonerPlan resolvedInwonerplan = inwonerPlanService.getInwonerPlan("111222334");
         assertEquals("aandachtpuntname should be Verslaving","Verslaving",resolvedInwonerplan.subdoelen.getFirst().getAandachtspunt().getNaamAandachtsPunt());
+    }
+
+    @Test
+    void subdoelWithNonExistingUUIDShouldThrow(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setSubdoelUUID(UUID.fromString("eb417c95-f0a8-4e04-8fd8-883ee40a6907").toString());
+        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+
+        RuntimeException ex = Assertions.assertThrows(NoSuchElementException.class,() ->{
+            inwonerPlanService.addInwonerplan(inwonerPlan);
+        });
+
+        assertEquals("Exception should be thrownwith message", "No value present",ex.getMessage());
+    }
+
+    @Test
+    void aandachtspuntWithNonExistingUUIDShouldThrow(){
+        InwonerplanSubdoel inwonerplanSubdoel = new InwonerplanSubdoel();
+        inwonerplanSubdoel.setAandachtspuntUUID(UUID.fromString("eb417c95-f0a8-4e04-8fd8-883ee40a6907").toString());
+        InwonerPlan inwonerPlan = new InwonerPlan("111222333", inwonerPlanService.getSubdoelen().get(4),List.of(inwonerplanSubdoel));
+
+        RuntimeException ex = Assertions.assertThrows(NoSuchElementException.class,() ->{
+            inwonerPlanService.addInwonerplan(inwonerPlan);
+        });
+
+        assertEquals("Exception should be thrownwith message", "No value present",ex.getMessage());
     }
 }
