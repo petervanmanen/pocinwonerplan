@@ -3,6 +3,7 @@ package nl.commutr.demo.domain.aanbod;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,10 +26,10 @@ public class Subdoel {
 
     String aandachtspuntenCodes;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Aandachtspunt> aandachtspunten;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Ontwikkelwens> ontwikkelwensen;
 
     public Subdoel(String code, String naam, boolean actief, List<Aandachtspunt> aandachtspunten) {

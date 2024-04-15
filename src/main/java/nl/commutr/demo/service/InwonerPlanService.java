@@ -45,43 +45,46 @@ public class InwonerPlanService {
 
     List<InwonerPlan> inwonerPlanList = new ArrayList<>();
 
-    public void addInwonerplan(InwonerPlan inwonerPlan){
-        for(InwonerplanSubdoel doel: inwonerPlan.subdoelen){
-            if(doel.getSubdoelUUID()!=null) {
-                Subdoel subdoel = subdoelRepository.findById(UUID.fromString(doel.getSubdoelUUID())).get();
-                doel.setSubdoel(subdoel);
+    public void addInwonerplan(InwonerPlan inwonerPlan) {
+        for (InwonerplanSubdoel doel : inwonerPlan.subdoelen) {
+            if (doel.getSubdoelUUID() == null || doel.getAandachtspuntUUID() == null) {
+                throw new RuntimeException("SubdoelUUID or aandachtspuntuuid is empty");
             }
-            if(doel.getAandachtspuntUUID()!=null) {
-                Aandachtspunt aandachtspunt = aandachtspuntRepository.findById(UUID.fromString(doel.getAandachtspuntUUID())).get();
-                doel.setAandachtspunt(aandachtspunt);
+            Subdoel subdoel = subdoelRepository.findById(UUID.fromString(doel.getSubdoelUUID())).get();
+            Aandachtspunt aandachtspunt = aandachtspuntRepository.findById(UUID.fromString(doel.getAandachtspuntUUID())).get();
+            if (!subdoel.getAandachtspunten().contains(aandachtspunt)) {
+                throw new RuntimeException("Subdoel and aandachtspunt are not related");
             }
+            doel.setSubdoel(subdoel);
+            doel.setAandachtspunt(aandachtspunt);
+
+
         }
         repository.save(inwonerPlan);
     }
 
 
-
-    public List<Aanbod> getAanbod(){
+    public List<Aanbod> getAanbod() {
         return IteratorUtils.toList(aanbodRepository.findAll().iterator());
     }
 
-    public List<Aandachtspunt> getAandachtspunten(){
+    public List<Aandachtspunt> getAandachtspunten() {
         return IteratorUtils.toList(aandachtspuntRepository.findAll().iterator());
     }
 
-    public List<Ontwikkelwens> getOntwikkelwensen(){
+    public List<Ontwikkelwens> getOntwikkelwensen() {
         return IteratorUtils.toList(ontwikkelwensRepository.findAll().iterator());
     }
 
-    public List<Subdoel> getSubdoelen(){
+    public List<Subdoel> getSubdoelen() {
         return IteratorUtils.toList(subdoelRepository.findAll().iterator());
     }
 
-    public List<Actiehouder> getActiehouders(){
+    public List<Actiehouder> getActiehouders() {
         return IteratorUtils.toList(actiehouderRepository.findAll().iterator());
     }
 
-    public InwonerPlan getInwonerPlan(String bsn){
+    public InwonerPlan getInwonerPlan(String bsn) {
         return repository.findByBsn(bsn);
     }
 }

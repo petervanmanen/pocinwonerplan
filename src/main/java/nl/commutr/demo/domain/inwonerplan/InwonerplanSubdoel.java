@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
@@ -19,10 +21,10 @@ public class InwonerplanSubdoel {
     @GeneratedValue
     private UUID id;
 
-    @OneToOne
+    @ManyToOne
     Subdoel subdoel;
 
-    @OneToOne
+    @ManyToOne
     Aandachtspunt aandachtspunt;
 
     @OneToMany
