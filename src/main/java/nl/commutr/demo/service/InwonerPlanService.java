@@ -97,15 +97,5 @@ public class InwonerPlanService {
         return repository.findByBsn(bsn);
     }
 
-    public void addInwonerprofiel(InwonerProfiel inwonerProfiel){
-        if(inwonerProfielRepository.findByBsn(inwonerProfiel.bsn)==null){
-            inwonerProfielRepository.save(inwonerProfiel);
-            return;
-        }
-        throw new RuntimeException("Profiel bestaat al");
-    }
 
-    public InwonerProfiel getInwonerProfiel(String bsn){
-        return inwonerProfielRepository.findByBsn(bsn);
-    }
 }
