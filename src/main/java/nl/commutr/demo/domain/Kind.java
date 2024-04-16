@@ -1,6 +1,8 @@
 package nl.commutr.demo.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
@@ -8,6 +10,7 @@ import java.util.UUID;
 @Entity
 public class Kind {
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private UUID id;
     public String voornaam;
     public String tussenvoegsel;
