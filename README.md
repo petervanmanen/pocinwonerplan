@@ -1,6 +1,6 @@
 # Functionele specs voor de APP
 
-Deze API ondersteund een aantal functionele cases waarmee in de oude oplossing problemen waren. Deze API is niet bedoeld als productiewaardige software maar puur om productinnovatie mee te verifieren.
+Deze API ondersteund een aantal functionele cases waarmee in de oude oplossing problemen waren. Deze API is niet bedoeld als productiewaardige software, de code is op POC niveau, puur om productinnovatie mee te verifieren.
 De applicatie bevat stamtabeldata vergelijkbaar met productie, alleen de mapping van aanbod op subdoelen is onjuist.
 
 ## API gebruiken
@@ -12,7 +12,8 @@ Om de api met een frontend app te gebruiken zullen er nog wat [cors spring inste
 Swagger UI / OpenApi is een standaard formaat om rest api's mee te specificeren, documenteren en gebruiken. Het is hierbij mogelijk om code te genereren en een test client gebruiken.
 ![Swagger UI](documentation/swagger-ui.png)
 
-
+## Datamodel
+Hieronder een overzicht van het databaseschema zoals dat in deze versie van de api gebruikt wordt. Dit database schema wordt gegenereerd vanuit de code.
 ![Datamodel](documentation/dbschema.png)
 
 ## Applicatieomschrijving
