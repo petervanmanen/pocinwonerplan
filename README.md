@@ -23,6 +23,9 @@ De aanvraag is een proces dat bestaat uit meerdere stappen.
 * In de laatste stap kies je het hoofddoel
 * Vervolgens sla je alle data op
 
+Er zijn ook [schermafbeeldingen](documentation/stappen.md).
+
+
 ## Aanvraag bijwerken
 De aanvraag bijwerken bestaat uit dezelfde stappen als aanvragen. In de basis zie je wat je eerder hebt ingevuld, kun je nieuwe dingen toevoegen.
 * Een aanvraag bijwerken begint met het reviewen en eventueel corrigeren van het inwonerprofiel.
