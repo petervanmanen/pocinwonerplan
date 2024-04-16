@@ -8,6 +8,11 @@ Je kunt de API starten door `./gradlew bootRun` te typen in de commandline of va
 In je browser kun je vervolgens in [swaggerui](http://localhost:8080/swagger-ui/index.html) de api testen
 Om de api met een frontend app te gebruiken zullen er nog wat [cors spring instellingen](https://www.baeldung.com/spring-cors) gezet moeten worden
 
+## Swagger UI / OpenApi
+Swagger UI / OpenApi is een standaard formaat om rest api's mee te specificeren, documenteren en gebruiken. Het is hierbij mogelijk om code te genereren en een test client gebruiken.
+![Swagger UI](documentation/swagger-ui.png)
+
+
 ## Applicatieomschrijving
 De inwonerplan applicatie kent 2 cases:
 1. Een aanvraag indienen
