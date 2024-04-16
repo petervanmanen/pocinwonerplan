@@ -5,7 +5,7 @@ De applicatie bevat stamtabeldata vergelijkbaar met productie, alleen de mapping
 
 ## API gebruiken
 Je kunt de API starten door `./gradlew` te typen in de commandline of vanuit intellij.
-In je browser kun je vervolgens in [http://localhost:8080/swagger-ui/index.html](swaggerui) de api testen
+In je browser kun je vervolgens in [swaggerui](http://localhost:8080/swagger-ui/index.html) de api testen
 Om de api met een frontend app te gebruiken zullen er nog wat [cors spring instellingen](https://www.baeldung.com/spring-cors) gezet moeten worden
 
 ## Applicatieomschrijving
