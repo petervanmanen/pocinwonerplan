@@ -17,3 +17,6 @@
 
 ### Stap 6
 ![Stap6](stap6%20hoofddoel.png)
+
+### Stap 7
+![Stap7](stap7%20pdf.png)
