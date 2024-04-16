@@ -1,5 +1,6 @@
 package nl.commutr.demo.api;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import nl.commutr.demo.domain.aanbod.Aanbod;
 import nl.commutr.demo.domain.aanbod.Aandachtspunt;
 import nl.commutr.demo.domain.aanbod.Ontwikkelwens;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Tag(name = "Stamtabellen")
 public class StamtabelController {
 
     @Autowired
