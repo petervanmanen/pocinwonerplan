@@ -13,6 +13,8 @@ Swagger UI / OpenApi is een standaard formaat om rest api's mee te specificeren,
 ![Swagger UI](documentation/swagger-ui.png)
 
 
+![Datamodel](documentation/dbschema.png)
+
 ## Applicatieomschrijving
 De inwonerplan applicatie kent 2 cases:
 1. Een aanvraag indienen
