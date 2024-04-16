@@ -1,5 +1,5 @@
 ### Stap 1
-![Stap1](stap1 inwonerprofiel.png)
+![Stap1](stap1%20inwonerprofiel.png)
 
 ### Stap 2
 ![Stap2](stap2_1%20aandachtspunten.png)
