@@ -1,5 +1,6 @@
 package nl.commutr.demo;
 
+import nl.commutr.demo.domain.aanbod.Subdoel;
 import nl.commutr.demo.service.InwonerPlanService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -57,5 +58,11 @@ public class StamtabelTest {
     @Test
     void activiteitShouldBeRapportbespreken() {
         assertEquals("activiteitShouldBeRapportbespreken", "Rapport bespreken", inwonerPlanService.getAanbod().get(50).getAanbodActiviteiten().get(4).getNaamaanbodactiviteit());
+    }
+
+    @Test
+    void listshouldhavetwoaanbods(){
+        Subdoel subdoel = inwonerPlanService.getSubdoelen().getFirst();
+        assertEquals("aanbod with subdoel should return 2 aanbods",2,inwonerPlanService.getAanbodWithSubdoel(subdoel.getUuid().toString()).size());
     }
 }
