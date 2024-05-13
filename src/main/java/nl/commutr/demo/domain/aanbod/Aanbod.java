@@ -27,6 +27,7 @@ public class Aanbod {
     List<AanbodActiviteit> aanbodActiviteiten;
 
     @ManyToMany(fetch = FetchType.LAZY)
+    //@ManyToMany(fetch = FetchType.EAGER)
     List<Subdoel> subdoelen;
 
     @JsonIgnore

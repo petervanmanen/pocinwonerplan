@@ -77,6 +77,10 @@ public class InwonerPlanService {
         return IteratorUtils.toList(aanbodRepository.findAll().iterator());
     }
 
+    public List<Aanbod> getAanbodWithSubdoel(String subdoel) {
+        return aanbodRepository.getAanbodsBySubdoelen(subdoelRepository.findById(UUID.fromString(subdoel)).get());
+    }
+
     public List<Aandachtspunt> getAandachtspunten() {
         return IteratorUtils.toList(aandachtspuntRepository.findAll().iterator());
     }
